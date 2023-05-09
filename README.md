@@ -1,1 +1,3 @@
 # FHIRedAPP
+
+An innovative patient-engaged technology (PET) platform to empower patients to gain access and give access to their health data “without special effort” while ensuring privacy and security of personal information. Our overall objective is to deliver a FHIR®-based (Fast Healthcare Interoperability Resources) mobile technology platform that uses innovative privacy preserving record linkage (PPRL), electronic consent management, Health Information Exchange (HIE) data, and human-centered design approaches to engage patients from diverse community groups in managing their health, communicating with peers and providers, and integrating social care with their health care.
