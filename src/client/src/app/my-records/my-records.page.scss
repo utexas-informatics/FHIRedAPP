@@ -1,0 +1,24 @@
+.scroll-grid {
+  flex-wrap: nowrap;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+}
+.dots {
+  width: 100vw;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+}
+.size-100 {
+  font-size: 100px;
+}
+.card-pos {
+  color: #e25369;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.loading {
+  color: #e25369;
+  left: 45%;
+}

@@ -1,0 +1,70 @@
+<ion-content>
+  <ion-grid
+    class="ion-justify-content-center ion-align-self-center max-app-width"
+    [ngClass]="{'header-padding-ios': isIOS, 'ion-margin-top':!isIOS}"
+  >
+    <ion-row class="tabbar">
+      <ion-col
+        (click)="setSelected()"
+        [ngClass]="{'selected': !isEngLanguageSelected, 'not-selected': isEngLanguageSelected}"
+        class="english-tab-bar"
+        >English</ion-col
+      >
+      <ion-col
+        (click)="setSelected()"
+        [ngClass]="{'selected': isEngLanguageSelected, 'not-selected': !isEngLanguageSelected }"
+        class="spanish-tab-bar"
+        >Español</ion-col
+      >
+    </ion-row>
+
+    <!-- <ion-row class="ion-text-center ion-justify-content-center">
+      <ion-col>
+        <ion-text>
+          <h5 class="title-styles">Consent</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col class="ion-justify-content-center ion-padding-horizontal">
+        <div
+          id="consent-policy"
+          [innerHtml]="(consentPolicyTobeLoaded | safeHtml)"
+          [class.collapsed]="isConsentPolicyCollapsed"
+        ></div>
+        <!-- <ion-button *ngIf="consentPolicy" fill="clear" size="small" color="primary"
+          (click)="isConsentPolicyCollapsed = !isConsentPolicyCollapsed" class="ion-float-right ion-text-lowercase">{{
+          isConsentPolicyCollapsed ? 'read more' : 'read less'
+          }}</ion-button> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-footer class="ion-no-border button-padding">
+    <ion-toolbar class="ion-text-center">
+      <ion-button
+        fill="outline"
+        color="primary"
+        expand="block"
+        size="default"
+        (click)="onDecline()"
+        class="ion-text-capitalize button-margin button-border"
+      >
+        Decline
+      </ion-button>
+    </ion-toolbar>
+    <ion-toolbar class="ion-text-center">
+      <ion-button
+        fill="solid"
+        [disabled]="!consentPolicyResp || !code"
+        color="primary"
+        expand="block"
+        size="default"
+        (click)="onAccept()"
+        class="ion-text-capitalize button-border"
+      >
+        Accept</ion-button
+      >
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

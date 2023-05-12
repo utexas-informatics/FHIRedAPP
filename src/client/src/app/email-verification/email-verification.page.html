@@ -1,0 +1,226 @@
+<!-- start header sign up -->
+<ion-header>
+  <ion-toolbar
+    class="ion-content-background"
+    [ngClass]="{'header-padding-ios': isIOS, 'zero-padding':!isIOS}"
+  >
+    <ion-buttons slot="start">
+      <ion-back-button
+        *ngIf="!fromForgot"
+        defaultHref="/loginSignup"
+        color="dark"
+        icon="chevron-back-outline"
+        text=""
+      ></ion-back-button>
+      <ion-back-button
+        *ngIf="fromForgot"
+        defaultHref="/loginPassword"
+        color="dark"
+        icon="chevron-back-outline"
+        text=""
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center centerAlign" *ngIf="!fromForgot"
+      >Sign Up</ion-title
+    >
+    <ion-title class="ion-text-center centerAlign" *ngIf="fromForgot"
+      >Forgot Password</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-back-button
+        defaultHref="/emailVerification"
+        color="secondary"
+        icon="chevron-back-outline"
+        text=""
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- end header sign up -->
+
+<ion-content
+  class="
+    ion-margin-top ion-padding-horizontal ion-align-self-center
+    max-app-width
+  "
+>
+  <ion-row class="ion-top-70" *ngIf="fromForgot && !verification">
+    <ion-col>
+      <ion-input
+        class="email-input ion-margin-bottom"
+        [(ngModel)]="signupUser.email"
+        placeholder="Enter email Address"
+        type="email"
+      ></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="!verification ">
+    <ion-col>
+      <ion-button
+        class="ion-top-70 ion-text-capitalize button-border"
+        color="primary"
+        expand="block"
+        (click)="onGenerate()"
+        >Verify</ion-button
+      >
+    </ion-col>
+  </ion-row>
+  <!-- start validation messages -->
+  <div *ngIf="verification">
+    <ion-row class="ion-top-70">
+      <ion-col>
+        <ion-text>
+          <h5>Verify Email Address</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- end validation messages -->
+
+    <!-- start password textbox -->
+    <ion-grid>
+      <ion-row>
+        <!-- first -->
+        <ion-col size="2">
+          <ion-item class="ion-no-padding ion-text-center no-padding">
+            <ion-input
+              [type]="passwordType"
+              pattern="[0-9]*"
+              [(ngModel)]="otp.first"
+              (keyup)="otpController($event,otp2,'')"
+              required="true"
+              maxLength="1"
+              #otp1
+              (ionChange)="autoTrigger()"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <!-- second -->
+        <ion-col size="2">
+          <ion-item class="ion-no-padding ion-text-center no-padding">
+            <ion-input
+              [type]="passwordType"
+              pattern="[0-9]*"
+              [(ngModel)]="otp.second"
+              (keyup)="otpController($event,otp3,otp1)"
+              required="true"
+              maxLength="1"
+              #otp2
+              (ionChange)="autoTrigger()"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <!-- third -->
+        <ion-col size="2">
+          <ion-item class="ion-no-padding ion-text-center no-padding">
+            <ion-input
+              [type]="passwordType"
+              pattern="[0-9]*"
+              [(ngModel)]="otp.third"
+              (keyup)="otpController($event,otp4,otp2)"
+              required="true"
+              maxLength="1"
+              #otp3
+              (ionChange)="autoTrigger()"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <!-- fourth -->
+        <ion-col size="2">
+          <ion-item class="ion-no-padding ion-text-center no-padding">
+            <ion-input
+              [type]="passwordType"
+              pattern="[0-9]*"
+              [(ngModel)]="otp.forth"
+              (keyup)="otpController($event,otp5,otp3)"
+              required="true"
+              maxLength="1"
+              #otp4
+              (ionChange)="autoTrigger()"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <!-- fifth -->
+        <ion-col size="2">
+          <ion-item class="ion-no-padding ion-text-center no-padding">
+            <ion-input
+              [type]="passwordType"
+              pattern="[0-9]*"
+              [(ngModel)]="otp.fifth"
+              (keyup)="otpController($event,otp6,otp4)"
+              required="true"
+              maxLength="1"
+              #otp5
+              (ionChange)="autoTrigger()"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <!-- sixth -->
+        <ion-col size="2">
+          <ion-item class="ion-no-padding ion-text-center no-padding">
+            <ion-input
+              [type]="passwordType"
+              pattern="[0-9]*"
+              [(ngModel)]="otp.sixth"
+              (keyup)="otpController($event,'',otp5)"
+              required="true"
+              maxLength="1"
+              #otp6
+              (ionChange)="autoTrigger()"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row class="ion-top-20">
+        <ion-col>
+          <ion-text
+            (click)="hideShowPassword()"
+            class="ion-float-right"
+            size="small"
+            color="primary"
+          >
+            <span *ngIf="passwordType == 'tel'">Hide code</span>
+            <span *ngIf="passwordType == 'password'">Show code</span>
+          </ion-text>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-col>
+          <ion-text size="large" class=""
+            >Please type the verification code sent to
+            <b>{{signupUser?.email}}</b> Invalid after
+            <b>{{timer$ | async | minute}}</b> min
+            <b>{{timer$ | async | second}}</b>
+            s
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- end password textbox -->
+    <!-- [disabled]="!otp.first || !otp.second || !otp.third || !otp.forth || !otp.fifth || !otp.sixth || ((timer$ | async) <= 0)" -->
+
+    <ion-row>
+      <ion-col>
+        <ion-button
+          class="ion-top-70 ion-text-capitalize button-border"
+          color="primary"
+          expand="block"
+          [disabled]="verify()"
+          (click)="onNext()"
+          >Next</ion-button
+        >
+        <ion-button
+          class="ion-top-70 ion-text-capitalize button-border"
+          fill="clear"
+          expand="block"
+          (click)="onGenerate()"
+          *ngIf="!disable"
+          >Generate new verification code</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

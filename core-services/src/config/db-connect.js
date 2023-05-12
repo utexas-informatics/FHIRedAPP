@@ -1,0 +1,16 @@
+module.exports = {
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  sslUrl: process.env.DB_SSL_URI,
+  pg_username: process.env.PG_DB_USERNAME,
+  pg_password: process.env.PG_DB_PASSWORD,
+  pg_database: process.env.PG_DB_NAME,
+  pg_host: process.env.PG_DB_HOST,
+  pg_port: process.env.PG_DB_PORT,
+  dbCA: process.env.DB_CA_CRT,
+  dbClientCRT: process.env.DB_CLIENT_CRT,
+  dbClientPEM: process.env.DB_CLIENT_PEM,
+};

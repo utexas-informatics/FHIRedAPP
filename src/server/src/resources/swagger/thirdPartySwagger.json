@@ -1,0 +1,1614 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is the API contract for the third party server for the DMS LEAP application",
+    "version": "1.0.0",
+    "title": "LEAP DMS APIs- Third Party",
+    "termsOfService": ""
+  },
+  "tags": [
+    {
+      "name": "Notifications",
+      "description": "Everything about the notifications from the consented 3rd party apps"
+    },
+    {
+      "name": "Users",
+      "description": "Everything about the users"
+    },
+    {
+      "name": "Messages",
+      "description": "Everything about the message threads"
+    }
+  ],
+  "paths": {
+    "/notifications/sendMobilePush": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "send mobile notification",
+        "description": "send mobile notification",
+        "operationId": "sendMobileNotification",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sendMobilePushRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by Id",
+        "description": "Get details of user based on its ID",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserById"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/messages": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Create thread by researcher",
+        "description": "Create new message thread based on data passed in the request body",
+        "operationId": "createThread",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Message"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Messages"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get thread with unread message count",
+        "description": "Get thread with unread message count as per query parameter",
+        "operationId": "getThreads",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "AppId"
+            }
+          },
+          {
+            "in": "query",
+            "name": "appId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Page"
+            }
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer",
+              "description": "Size"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "description": "Size"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessagesId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/messages/{id}/participants": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Fetch participants information",
+        "description": "Fetch participants information based on threadId",
+        "operationId": "getParticipants",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of thread to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Participant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/messages/{id}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Fetch chat between sender and recipient",
+        "description": "Fetch chats for the perticular threads betweeen sender Id (from headers) and recipient (Query params)",
+        "operationId": "getChats",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of thread to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "in": "query",
+            "name": "senderId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "senderId"
+            }
+          },
+          {
+            "in": "query",
+            "name": "recipientId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "RecepientId"
+            }
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer",
+              "description": "Size"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "description": "Size"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Add chat message",
+        "description": "Add chat message in existing thread",
+        "operationId": "createChat",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of thread to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer",
+              "description": "Size"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "description": "Size"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chats"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/messages/{id}/markAsRead": {
+      "put": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Mark read chat from threads",
+        "description": "Mark chat as  from threads based on Id",
+        "operationId": "markAsRead",
+        "parameters": [
+          {
+            "in": "header",
+            "description": "userId",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of thread to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "in": "query",
+            "description": "recipientId",
+            "name": "recipientId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "description": "senderId",
+            "name": "senderId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "description": "application name (Study App)",
+            "name": "source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "description": "type of platform (web, mobile)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatMarkAsRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://leapapi-dev.leap.dellmed.utexas.edu/api"
+    },
+    {
+      "url": "https://localhost:8080/api"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "sendMobilePushRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "test"
+          },
+          "message": {
+            "type": "string",
+            "example": "test message"
+          },
+          "app": {
+            "type": "string",
+            "example": "5fec6f6e8048d25b1c189a2d"
+          },
+          "type": {
+            "type": "string",
+            "example": "message"
+          }
+        }
+      },
+      "Notifications": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "5ff40a5a061e3f78d0f36e42"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "title": {
+            "type": "string",
+            "example": "test title"
+          },
+          "message": {
+            "type": "string",
+            "example": "test message"
+          },
+          "app": {
+            "type": "string",
+            "example": "5fec6f6e8048d25b1c189a2d"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-01-05T04:14:12.000Z"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "firstname lastname"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-01-05T04:14:12.000Z"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "fistname lastname"
+          }
+        }
+      },
+      "UserById": {
+        "type": "object",
+        "properties": {
+          "isBiometricEnabled": {
+            "type": "boolean",
+            "example": false
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "_id": {
+            "type": "string",
+            "example": "608031dc2cefd922906ae36c"
+          },
+          "keycloakId": {
+            "type": "string",
+            "example": "dabe045f-8454-428d-8426-ce03e53a1ed0"
+          },
+          "email": {
+            "type": "string",
+            "example": "pratapsinhkale@gmail.com"
+          },
+          "status": {
+            "type": "string",
+            "example": "Active"
+          },
+          "inviteCode": {
+            "type": "string",
+            "example": "pratap5"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "Admin User"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "Pratap Kale"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2021-04-19T12:44:14.893Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2021-04-19T13:06:39.150Z"
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "isActive": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "consentedMedicalRecords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "5ffc32eda3c2ec783e43b628"
+                  }
+                },
+                "_id": {
+                  "type": "string",
+                  "example": "608108b12cefd922906ae36d"
+                },
+                "app": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "5fec6f918048d25b1c189a2e"
+                    },
+                    "isDeleted": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "isActive": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "notifications": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "5ff40a5a061e3f78d0f36e42,6006868fcb4b3041d0157393"
+                      }
+                    },
+                    "appName": {
+                      "type": "string",
+                      "example": "studyApp"
+                    },
+                    "longDescription": {
+                      "type": "string",
+                      "example": "long description of app"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "example": "Balwant"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "example": "Balwant"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2020-12-30T12:10:26.531Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2020-12-30T12:10:26.531Z"
+                    },
+                    "shortDescription": {
+                      "type": "string",
+                      "example": "short description of app"
+                    },
+                    "appLogo": {
+                      "type": "string",
+                      "example": "studyapp_logo.svg"
+                    },
+                    "appUrl": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "consentVersion": {
+                      "type": "string",
+                      "example": "v4"
+                    },
+                    "consentTermOfUse": {
+                      "type": "string",
+                      "example": "test contents for consent terms of use."
+                    },
+                    "consentPrivacy": {
+                      "type": "string",
+                      "example": "test contents for consent privacy."
+                    },
+                    "consentPolicy": {
+                      "type": "string",
+                      "example": "<div>Consent policy form</div>"
+                    },
+                    "medicalRecords": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "5ffc32eda3c2ec783e43b628"
+                      }
+                    }
+                  }
+                },
+                "consentUpdatedAt": {
+                  "type": "string",
+                  "example": "2021-04-19T15:19:45.679Z"
+                }
+              }
+            }
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "isPushed": {
+                  "type": "boolean"
+                },
+                "isRead": {
+                  "type": "boolean"
+                },
+                "_id": {
+                  "type": "string"
+                },
+                "notification": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": [
+              {
+                "isPushed": false,
+                "isRead": false,
+                "_id": "5ff4a85eb4c7a14cec131a7c",
+                "notification": "5ff40a5a061e3f78d0f36e42",
+                "createdAt": "2021-01-05T17:57:06.586Z"
+              },
+              {
+                "isPushed": false,
+                "isRead": false,
+                "_id": "5ff4a85eb4c7a14cec131a7c",
+                "notification": "6006868fcb4b3041d0157393",
+                "createdAt": "2021-01-05T17:57:06.586Z"
+              }
+            ]
+          },
+          "lastLoginTime": {
+            "type": "string",
+            "example": "2021-04-19T15:56:59.647Z"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "2021-04-19T00:00:00.000Z"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Pratap"
+          },
+          "gender": {
+            "type": "string",
+            "example": "Male"
+          },
+          "genderOther": {
+            "type": "string",
+            "example": null
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Kale"
+          },
+          "phoneNumberPrimary": {
+            "type": "string",
+            "example": 8149895088
+          },
+          "phoneNumberSecondary": {
+            "type": "string",
+            "example": null
+          },
+          "zip": {
+            "type": "string",
+            "example": 12345
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "description": "message details",
+        "properties": {
+          "app": {
+            "type": "string",
+            "example": "5fec6f918048d25b1c189a2e"
+          },
+          "title": {
+            "type": "string",
+            "example": "test study"
+          },
+          "userName": {
+            "type": "string",
+            "example": "firstname lastName"
+          },
+          "userId": {
+            "type": "string",
+            "example": "5ff40edee62fe27178eab167"
+          }
+        }
+      },
+      "Messages": {
+        "type": "object",
+        "description": "message details",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "60c33dd35fcf392a0165748d"
+          },
+          "app": {
+            "type": "string",
+            "example": "5fec6f6e8048d25b1c189a2d"
+          },
+          "title": {
+            "type": "string",
+            "example": "test study"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "firstname lastName"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "firstname lastname"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-01-11T08:31:42.270Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-01-11T08:31:42.270Z"
+          },
+          "chats": {
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MessagesId": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "app": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "appName": {
+                  "type": "string"
+                }
+              }
+            },
+            "title": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "chats": {
+              "type": "string"
+            },
+            "participants": {
+              "type": "object",
+              "properties": {
+                "sender": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recipient": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "unreadCount": {
+              "type": "integer"
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "5ff53d85af962933a8b3a7f5adsfadf",
+            "app": {
+              "_id": "5fec6f6e8048d25b1c189a2d",
+              "appName": "Study App"
+            },
+            "title": "Fever Study",
+            "createdAt": "2021-01-06T04:33:09.601Z",
+            "updatedAt": "2021-01-06T04:33:09.601Z",
+            "chats": [],
+            "participants": {
+              "sender": {
+                "id": "6090068e3263f959f489d5e8",
+                "name": "firstName lastname"
+              },
+              "recipient": {
+                "id": "6090051d3263f959f489d5e7",
+                "name": "firstName lastname"
+              }
+            },
+            "unreadCount": 0
+          }
+        ]
+      },
+      "Participant": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "description": "participant details",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "user": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "example": [
+          {
+            "id": "5ff559f333aad739800b9bc4",
+            "user": "firstname lastname",
+            "count": 1
+          },
+          {
+            "id": "5ff5416533aad739800b9bbf",
+            "user": "firstname lastname",
+            "count": 2
+          }
+        ]
+      },
+      "ChatId": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "chats": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "isDeleted": {
+                    "type": "string"
+                  },
+                  "isRead": {
+                    "type": "string"
+                  },
+                  "_id": {
+                    "type": "string"
+                  },
+                  "sender": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "recipient": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "postedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "5ff53d85af962933a8b3a7f5adsfadf",
+            "chats": [
+              {
+                "isDeleted": false,
+                "isRead": true,
+                "_id": "60b8d61f05d835567082ce67",
+                "sender": {
+                  "id": "6090068e3263f959f489d5e8",
+                  "name": "firstName lastname"
+                },
+                "recipient": {
+                  "id": "6090051d3263f959f489d5e7",
+                  "name": "firstName lastname"
+                },
+                "body": "hey, test message 2",
+                "postedAt": "2021-06-03T13:16:15.253Z"
+              },
+              {
+                "isDeleted": false,
+                "isRead": true,
+                "_id": "60b8d61f05d835567082ce67",
+                "sender": {
+                  "id": "6090068e3263f959f489d5e8",
+                  "name": "firstName lastname"
+                },
+                "recipient": {
+                  "id": "6090051d3263f959f489d5e7",
+                  "name": "firstName lastname"
+                },
+                "body": "hey, test message 1",
+                "postedAt": "2021-06-03T13:16:15.253Z"
+              }
+            ]
+          }
+        ]
+      },
+      "Chat": {
+        "type": "object",
+        "description": "chat details",
+        "properties": {
+          "sender": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "5ff40edee62fe27178eab165"
+              },
+              "name": {
+                "type": "string",
+                "example": "firstname lastname"
+              }
+            }
+          },
+          "recipient": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "5ff5416533aad739800b9bbf"
+              },
+              "name": {
+                "type": "string",
+                "example": "firstname lastname"
+              }
+            }
+          },
+          "body": {
+            "type": "string",
+            "example": "Hi, Good Morning"
+          }
+        }
+      },
+      "Chats": {
+        "type": "object",
+        "description": "chat details",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "60b77eb005d835567082ce44"
+          },
+          "chats": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "isDeleted": {
+                  "type": "string",
+                  "example": false
+                },
+                "isRead": {
+                  "type": "string",
+                  "example": false
+                },
+                "_id": {
+                  "type": "string",
+                  "example": "60c33f985fcf392a01657490"
+                },
+                "sender": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "5ff40edee62fe27178eab165"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "firstname lastname"
+                    }
+                  }
+                },
+                "recipient": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "5ff5416533aad739800b9bbf"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "firstname lastname"
+                    }
+                  }
+                },
+                "body": {
+                  "type": "string",
+                  "example": "Hi, Good Morning"
+                },
+                "postedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2020-12-30T13:47:51.918Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ChatMarkAsRead": {
+        "type": "object",
+        "description": "chat details",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "chats mark as a read successfully"
+          }
+        }
+      },
+      "ThreadMessages": {
+        "type": "object",
+        "description": "Returns array of message objects.",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sender": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "5ff40edee62fe27178eab165"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "firstname lastname"
+                    }
+                  }
+                },
+                "recipient": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "5ff5416533aad739800b9bbf"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "firstname lastname"
+                    }
+                  }
+                },
+                "body": {
+                  "type": "string",
+                  "example": "Hi, Good Morning"
+                },
+                "postedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2021-01-06T04:54:24.013Z"
+                },
+                "isRead": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "Unauthorised",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Unauthorised"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "error details from IDP"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User not authenticated"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "URL Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Not Found"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Invalid URL"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Invalid URL"
+                }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 500
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Object with error details"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Error while creating document"
+                }
+              }
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Bad Request"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "nested object with validation details"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Validation Failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

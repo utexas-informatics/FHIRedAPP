@@ -1,0 +1,27 @@
+.ion-card {
+  // border-left: 6px #267a85 solid;
+  // margin: 7px 7px 7px 16px;
+  width: 100%;
+}
+.app-icon {
+  background: #fbdf5e;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1em;
+}
+
+.ion-no-border {
+  border: 0px !important;
+}
+
+ion-item {
+  --border-style: none !important;
+}
+.pad-top-0 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  min-height: 35px !important;
+}
+.date {
+  color: #b8b8b8;
+}

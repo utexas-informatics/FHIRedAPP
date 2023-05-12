@@ -1,0 +1,56 @@
+#consent-policy.collapsed {
+  height: 400px;
+  overflow: hidden;
+}
+
+.button-margin {
+  margin-right: 8px;
+}
+
+.tabbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 34%;
+  height: 3vh;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.english-tab-bar {
+  display: flex;
+  font-size: 0.6rem;
+  border-radius: 10px 0px 0px 10px;
+  height: 3vh;
+  justify-content: center;
+  border-width: 5px;
+  border-color: grey;
+  border-width: 0.01em;
+  border-style: solid;
+  margin-bottom: 1px;
+}
+.spanish-tab-bar {
+  display: flex;
+  font-size: 0.6rem;
+  border-radius: 0px 10px 10px 0px;
+  height: 3vh;
+  justify-content: center;
+  border-color: grey;
+  border-width: 0.01em;
+  border-style: solid;
+  margin-bottom: 1px;
+}
+.selected {
+  background-color: white;
+}
+.not-selected {
+  background-color: lightgray;
+}
+
+.header-padding-ios {
+  margin-top: 40px;
+}
+
+.button-padding {
+  padding: 0 10px;
+}

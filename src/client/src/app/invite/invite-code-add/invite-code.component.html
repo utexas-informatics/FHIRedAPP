@@ -1,0 +1,89 @@
+<!-- start  header -->
+<ion-header>
+  <ion-toolbar class="ion-content-background">
+    <ion-title class="ion-text-center bold">Generate Invite Code</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- end  header -->
+
+<ion-content
+  class="ion-padding-horizontal ion-align-self-center max-app-width container"
+>
+  <form #invitationForm="ngForm" novalidate>
+    <!-- start code textbox -->
+    <!-- <ion-item class="ion-margin-top ion-justify-content-center">
+      <ion-label position="floating" color="medium" class="code-label"
+        >Invite Code</ion-label
+      >
+
+      <ion-input
+        type="text"
+        [(ngModel)]="inviteInfo.code"
+        required
+        name="code"
+        #code="ngModel"
+      ></ion-input>
+    </ion-item> -->
+    <!-- end code textbox -->
+
+    <!-- start patientEmail textbox -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating" color="medium">Patient Email</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="inviteInfo.patientEmail"
+        required
+        name="patientEmail"
+        #patientEmail="ngModel"
+        email="true"
+        required
+      ></ion-input>
+    </ion-item>
+    <span
+      class="warning text-sm"
+      *ngIf="
+        invitationForm.invalid &&
+        invitationForm.touched &&
+        inviteInfo.patientEmail.length < 1
+      "
+      >Email required</span
+    >
+    <span
+      class="warning text-sm"
+      *ngIf="
+        invitationForm.invalid &&
+        invitationForm.touched &&
+        inviteInfo.patientEmail.length > 0
+      "
+      >Please enter valid patient email address</span
+    >
+    <!-- end patientEmail textbox -->
+
+    <!-- start approverEmail textbox -->
+    <!-- <ion-item class="ion-margin-top">
+      <ion-label position="floating" color="medium">Approver Email</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="inviteInfo.approverEmail"
+        name="approverEmail"
+        #approverEmail="ngModel"
+      ></ion-input>
+    </ion-item> -->
+    <!-- end approverEmail textbox -->
+
+    <!-- start submit button -->
+    <ion-row>
+      <ion-col>
+        <ion-button
+          class="ion-margin-top ion-text-capitalize"
+          [disabled]="invitationForm.invalid"
+          color="primary"
+          expand="block"
+          (click)="submit(invitationForm)"
+          >Submit</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <!-- end submit button -->
+  </form>
+</ion-content>

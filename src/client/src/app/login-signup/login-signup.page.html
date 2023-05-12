@@ -1,0 +1,69 @@
+<ion-grid class="container" >
+  <!-- <ion-content class="container"> -->
+  <form #userForm="ngForm" novalidate (submit)="getUser()">
+    
+    <ion-grid
+      class="
+        ion-text-center ion-justify-content-center ion-align-self-center
+        max-app-width
+      "
+    >
+      <ion-row class="ion-margin-bottom">
+        <ion-col>
+          <ion-img
+            class="
+              ion-align-self-center ion-justify-content-center
+              img-vertically-center
+            "
+            [ngClass]="{'login-img': isIOS, 'zero-padding':!isIOS}"
+            src="/assets/images/welcome1.svg"
+          >
+          </ion-img>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-vertical ion-text-center">
+        <ion-col class="ion-justify-content-center">
+          <ion-text>
+            <h2 class="title-styles whitecolor">Sign Up or Log In</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-margin-vertical">
+        <ion-col class="ion-justify-content-center alignment">
+          <ion-label class="email-label whitecolor" position="stacked"
+            >Email Address</ion-label
+          >
+          <ion-input
+            class="email-input ion-margin-bottom"
+            placeholder="email.id@provider.com"
+            [(ngModel)]="emailId"
+            required="true"
+            #validEmail="ngModel"
+            name="validEmail"
+            type="email"
+            email="true"
+          >
+          </ion-input>
+          <ion-button
+            class="
+              full-width-button
+              ion-text-capitalize ion-no-margin
+              button-border
+            "
+            color="primary"
+            expand="block"
+            [disabled]="userForm.invalid"
+            (click)="getUser()"
+          >
+            <ion-text>
+              <h6 class="ion-no-margin whitecolor">Continue</h6>
+            </ion-text>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+<!-- </ion-content> -->
+</ion-grid>

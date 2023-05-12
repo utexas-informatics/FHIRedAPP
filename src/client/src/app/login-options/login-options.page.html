@@ -1,0 +1,55 @@
+<ion-content>
+  <ion-grid *ngIf="user"
+    class="ion-margin-top ion-justify-content-center ion-align-self-center ion-text-center max-app-width">
+    <ion-row class="ion-text-center ion-padding-top ion-margin-top">
+      <ion-col class="ion-padding-top ion-margin-top">
+        <ion-avatar class="avatar-styles">
+          <ion-icon color="medium" class="icon-styles ion-align-self-center" name="profile-placeholder"></ion-icon>
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <h5 class="title-styles">{{user?.firstName}} {{user?.lastName}}</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-bottom">
+      <ion-col class="ion-margin-bottom">
+        <ion-text class="ion-text-wrap" color="medium">
+          <h5 class="ion-no-padding ion-no-margin">{{user?.email}}</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="button-row ion-margin-top ion-padding-top">
+      <ion-col class="button-row ion-margin-top ion-padding-top">
+        <ion-button class="ion-margin-horizontal" color="primary" expand="block" (click)="onLoginViaOptionClick()">Log
+          In via {{loginOption}}</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button
+          fill="clear"
+          class="ion-text-capitalize"
+          (click)="onSwitchMethodClick()"
+          >Switch method</ion-button
+        >
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons class="ion-text-center ion-align-items-center ion-justify-content-center ion-padding-vertical">
+      <ion-button fill="clear" size="default" color="primary" class="ion-text-capitalize" (click)="onSwitchAccount()">
+        Switch account</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

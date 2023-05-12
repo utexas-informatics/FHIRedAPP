@@ -1,0 +1,77 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title class="ion-text-center ion-no-padding title-styles"
+      >More Options</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(false)">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="ion-padding ion-justify-content-center ion-align-self-center max-app-width"
+>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="loginOption">
+      <ion-list-header>
+        <ion-text>
+          <h5>Choose another way to log in:</h5>
+        </ion-text>
+      </ion-list-header>
+
+      <ion-item lines="full">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-label>
+          <ion-label class="margin-bottom"><b>Password</b></ion-label>
+          <ion-label class="ion-text-wrap" color="medium">
+            <p>Provide your account password</p>
+          </ion-label>
+        </ion-label>
+        <ion-radio slot="end" value="Password"></ion-radio>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-label>
+          <ion-label class="margin-bottom"><b>Email Link</b></ion-label>
+          <ion-label class="ion-text-wrap" color="medium">
+            <p>Check email with login link in your mailbox</p>
+          </ion-label>
+        </ion-label>
+        <ion-radio slot="end" value="Email Link"></ion-radio>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon src="/assets/images/faceid.svg" slot="start"></ion-icon>
+        <ion-label>
+          <ion-label class="margin-bottom"><b>Biometric</b></ion-label>
+          <ion-label class="ion-text-wrap" color="medium">
+            <p>Recognize your face / finger print if enabled</p>
+          </ion-label>
+        </ion-label>
+        <ion-radio slot="end" value="Biometric"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons
+      class="ion-text-center ion-align-items-center ion-justify-content-center ion-padding-vertical"
+    >
+      <ion-button
+        [disabled]="loginOption !== 'Password'"
+        fill="solid"
+        color="primary"
+        expand="block"
+        (click)="dismiss(true)"
+        class="ion-text-capitalize btn-styles"
+        >Log In
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

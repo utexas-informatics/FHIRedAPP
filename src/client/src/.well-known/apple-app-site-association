@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8AK4L85QNB.edu.utexas.dellmed.FHIRedApp",
+        "paths": ["*"]
+      }
+    ]
+  }
+}

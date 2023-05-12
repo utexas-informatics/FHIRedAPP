@@ -1,0 +1,82 @@
+.month-text {
+  min-width: 12vw;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+
+  background-color: var(--ion-color-primary) !important;
+  color: white;
+  font-weight: bold;
+}
+.date-text {
+  min-width: 12vw;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color: black;
+  font-weight: bold;
+}
+.medication-title-text {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color: #2d2b2b;
+  font-weight: bold;
+  text-align: left;
+}
+.medication-dosage-text {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color: #626262;
+  text-align: left;
+}
+
+.vertical-item {
+  width: 73%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.card {
+  width: 90vw;
+  height: 10vh;
+  border-radius: 10px;
+  margin-left: 16px;
+  margin-right: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.padding {
+  padding-right: 5px;
+}
+
+.date-card {
+  border-radius: 8px;
+}
+.div-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.chevron-forward-outline {
+  color: #ef8f8c;
+}
+.iconsize {
+  font-size: 30px !important;
+}

@@ -1,0 +1,39 @@
+.ion-left-5 {
+  left: 5px;
+}
+.ion-card-margin {
+  border-left: 6px #267a85 solid;
+  margin: 7px;
+}
+.app-icon {
+  background: #fbdf5e;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1em;
+}
+.thread-title {
+  font-size: 16px;
+}
+.ion-no-border {
+  border: 0px !important;
+}
+
+ion-item {
+  --border-style: none !important;
+}
+.pad-top-0 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.text-center {
+  top: 50%;
+  left: 45%;
+  position: fixed;
+  // transform: translate(-50%, -50%);
+}
+
+.horizontal-scroll {
+  overflow: auto;
+  white-space: nowrap;
+}

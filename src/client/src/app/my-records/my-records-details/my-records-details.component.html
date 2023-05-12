@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar
+    color="primary"
+    [ngClass]="{ 'header-padding-ios': isIOS, 'zero-padding': !isIOS }"
+  >
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="home"
+        class="top-title"
+        (click)="goBack()"
+        icon="chevron-back-outline"
+        text=""
+      ></ion-back-button>
+
+      <!-- <ion-text class="top-title"></ion-text> -->
+    </ion-buttons>
+    <ion-title>
+      <ion-text class="top-title text-xxl">
+        {{ category.type }}
+      </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="container">
+    <ion-text class="title text-ivl">{{ title }}</ion-text>
+
+    <ion-text class="subtitle text-md">{{ subTitle }}</ion-text>
+    <ion-text class="prescriber text-md">
+      <b>Facility:</b> {{ facility }}</ion-text
+    >
+    <ion-text class="date-of-issue text-md"
+      ><b>Date Issued:</b> {{ date }}</ion-text
+    >
+    <ion-row *ngIf="category.type == 'Medication'" class="date-margin">
+      <ion-col class="card-details-container">
+        <ion-card class="ion-text-center ion-no-padding date-card">
+          <div class="vertical-item">
+            <ion-text class="ion-no-margin ion-no-padding ion-float-left" start>
+              <h6 class="month-text text-md">Qty</h6>
+            </ion-text>
+            <ion-text class="ion-no-margin ion-no-padding ion-float-left" start>
+              <h6 class="date-text text-md">{{ recordDetails.refill }}</h6>
+            </ion-text>
+          </div>
+        </ion-card>
+        <ion-card class="ion-text-center ion-no-padding date-card">
+          <div class="vertical-item">
+            <ion-text class="ion-no-margin ion-no-padding ion-float-left" start>
+              <h6 class="month-text text-md">Refills</h6>
+            </ion-text>
+            <ion-text class="ion-no-margin ion-no-padding ion-float-left" start>
+              <h6 class="date-text text-md">{{ recordDetails.refill }}</h6>
+            </ion-text>
+          </div>
+        </ion-card>
+        <ion-card class="ion-text-center ion-no-padding date-card">
+          <div class="vertical-item">
+            <ion-text class="ion-no-margin ion-no-padding ion-float-left" start>
+              <h6 class="month-text text-md">RX #</h6>
+            </ion-text>
+            <ion-text class="ion-no-margin ion-no-padding ion-float-left" start>
+              <h6 class="date-text text-md">{{ recordDetails.rx }}</h6>
+            </ion-text>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <div class="content">
+      <div *ngFor="let obj of keyValue; index as i" class="content-segment">
+        <ion-text class="content text-md top-20">
+          <b>{{ obj.key }}:</b></ion-text
+        >
+        <ion-text class="content text-md">{{ ' ' + obj.value }} </ion-text>
+      </div>
+    </div>
+    <!-- <ion-text class="content"> <b>Medication Label:</b>Loren emsum</ion-text>
+  <ion-text class="content"> <b>Medication Administration Instructions:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</ion-text>
+  <ion-text class="content"> <b>Pharmacy Address:</b> Lorem ipsum dolor sit amet</ion-text>
+ 
+  <ion-text class="content"> <b>Pharmacy  Instructions:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</ion-text>
+   -->
+  </ion-grid>
+</ion-content>

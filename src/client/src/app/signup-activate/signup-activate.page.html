@@ -1,0 +1,50 @@
+<ion-content>
+  <ion-grid
+    class="
+      ion-margin-top ion-justify-content-center ion-align-self-center
+      max-app-width
+    "
+  >
+    <ion-row class="ion-text-center ion-padding">
+      <ion-col>
+        <ion-text>
+          <h5 class="title-styles">Activate account</h5>
+        </ion-text>
+        <ion-text color="medium">
+          <h5>{{user?.email}}</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center ion-padding">
+      <ion-col>
+        <!-- <ion-button
+          [disabled]="!user"
+          fill="outline"
+          color="primary"
+          size="default"
+          (click)="onDecline()"
+          class="ion-text-capitalize ion-margin-end"
+        >
+          Decline
+        </ion-button> -->
+        <ion-button
+          *ngIf="user"
+          [disabled]="!user || user?.status=='Active'"
+          fill="solid"
+          color="primary"
+          size="default"
+          (click)="onActivate()"
+          class="ion-text-capitalize"
+        >
+          Activate</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row
+      class="ion-text-center ion-padding"
+      *ngIf="user && user?.status=='Active'"
+    >
+      <ion-col> The account is already activated. </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

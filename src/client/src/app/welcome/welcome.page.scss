@@ -1,0 +1,14 @@
+ion-grid.welcome-grid {
+  height    : 100%;
+  display   : flex;
+  flex-flow : column;
+  background: var(--ion-color-secondary);
+}
+
+ion-grid .slide-row {
+  flex-grow: 1;
+}
+
+ion-grid .button-row {
+  height: 10%;
+}

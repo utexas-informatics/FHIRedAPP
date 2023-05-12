@@ -1,0 +1,16 @@
+.app-list-label {
+  cursor: pointer;
+}
+
+.ion-checkbox-size {
+  width: 15px;
+  height: 15px;
+}
+
+.app-list-button {
+  --color: var(--ion-color-primary);
+  --background: var(--ion-color-primary-light);
+  --background-hover: var(--ion-color-primary-light-hover);
+  --box-shadow: 0;
+  min-width: 60px;
+}

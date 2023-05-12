@@ -1,0 +1,96 @@
+.header {
+  height: 100%;
+  width: 100%;
+  // padding-top: 20px !important;
+  padding-bottom: 0px !important;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  top: 0;
+}
+.header-padding-ios {
+  padding-top: 40px;
+}
+
+.backbutton {
+  margin-top: 6px;
+  color: white;
+  font-size: 24px;
+}
+
+.header-text {
+  width: 95%;
+  color: white;
+}
+
+.header-searchbar {
+  width: 100%;
+  --border-radius: 10px;
+  --padding-start: 0px !important;
+  --inner-padding-end: 0px !important;
+  padding-inline-end: 0 !important;
+  -webkit-padding-end: 0 !important;
+  padding-inline-start: 0 !important;
+  -webkit-padding-start: 0 !important;
+  --background: white;
+}
+
+.header-avatar-image {
+  width: 25%;
+  float: right;
+  --ion-item-background: transparent;
+  --border-width: 0;
+  --inner-border-width: 0;
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
+}
+
+.tr-bg {
+  --ion-item-background: transparent;
+  --border-width: 0;
+  --inner-border-width: 0;
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
+}
+
+.zero-padding {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  // here other custom CSS from documentation
+}
+
+.row {
+  height: 60px;
+}
+
+.title-image {
+  font-size: 100px;
+}
+
+ion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-icon {
+  float: right;
+  font-size: 25px;
+  margin: 5px 0px;
+  color: white;
+}
+.margin-bottom {
+  bottom: 0px;
+}
+.ellipsis-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.blankHeight {
+  height: 60px;
+}
+.full {
+  width: 100%;
+}

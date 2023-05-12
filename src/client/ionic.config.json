@@ -1,0 +1,7 @@
+{
+  "name": "FHIRedApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,51 @@
+<ion-grid class="ion-no-padding">
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding ion-text-end">
+      <ion-button
+        fill="clear"
+        class="ion-text-capitalize"
+        [disabled]="label == 'Manage' && !isManageEnabled"
+        (click)="onManageClick($event, appList)"
+        >{{label}}</ion-button
+      >
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <app-app-list
+        [fromMyApps]="true"
+        [labelAppList]="label"
+        [allApps]="myApps"
+        [user]="user"
+        #appList
+      ></app-app-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-footer *ngIf="label === 'Cancel'" class="ion-no-border">
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-checkbox
+        class="ion-checkbox-size ion-margin-end"
+        [(ngModel)]="appList.selectedAll"
+        (ngModelChange)="appList.selectAll()"
+      ></ion-checkbox>
+      <ion-label>
+        <p>Select All</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-button
+      slot="end"
+      color="primary"
+      fill="outline"
+      size="small"
+      class="ion-margin-end"
+      [disabled]="!appList.isCheckboxSelected()"
+      (click)="getConfirmation($event, appList)"
+      >Withdraw</ion-button
+    >
+  </ion-toolbar>
+</ion-footer>

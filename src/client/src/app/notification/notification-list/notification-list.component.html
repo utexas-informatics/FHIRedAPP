@@ -1,0 +1,13 @@
+<ion-list class="list-align">
+  <ion-list-header *ngIf="!!listHeader" class="header">
+    <h3>{{ listHeader }}</h3>
+  </ion-list-header>
+
+  <span *ngIf="displayList && displayList.length">
+    <app-ion-card-list
+      *ngFor="let item1 of displayList"
+      [item]="item1"
+      (selectCard)="openNotification($event, item1.id)"
+    ></app-ion-card-list>
+  </span>
+</ion-list>

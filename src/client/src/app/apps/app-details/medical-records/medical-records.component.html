@@ -1,0 +1,17 @@
+<div *ngIf="medicalRecords?.length; else elseBlock">
+  <ion-list>
+    <ion-item *ngFor="let mr of medicalRecords" lines="inset">
+      <ion-label class="app-list-label">
+        <ion-text>{{ mr.type }}</ion-text>
+        <ion-text color="medium" class="ion-text-wrap"
+          ><p>{{ mr.description }}</p></ion-text
+        >
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+<ng-template #elseBlock
+  ><ion-label color="medium"
+    >Medical records to be consented not available</ion-label
+  ></ng-template
+>

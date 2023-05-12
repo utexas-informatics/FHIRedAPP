@@ -1,0 +1,8 @@
+{
+  "studyApp": {
+    "exchangeClient": "studyApp",
+    "originRole": "fhiredapp:leap_patient",
+    "exchangeRole": "studyApp:studyapp-patient",
+    "whitelistServices": ["getUserById", "sendMobileNotification"]
+  }
+}

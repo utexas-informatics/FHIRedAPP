@@ -1,0 +1,132 @@
+<home-header
+  *ngIf="headerProps"
+  [headerProps]="headerProps"
+  (onSearchTextChanged)="onSearchTextChanged($event)"
+  class="headers"
+></home-header>
+
+<ion-content class="medical-content">
+  <ion-grid>
+    <ion-row class="row-margin-padding">
+      <ion-col class="ion-no-padding">
+        <ion-text class="home-title-txt ion-text-capitalize text-lg">
+          How can we help you today?
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <home-card
+          [props]="medicationProps[0]"
+          (click)="gotoMyrecords()"
+        ></home-card>
+      </ion-col>
+      <ion-col>
+        <home-card
+          [props]="medicationProps[1]"
+          (click)="gotoAppPlugins()"
+        ></home-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-margin-padding">
+      <ion-col class="ion-no-padding" size="9">
+        <ion-text class="home-title-txt text-lg">
+          Recent Medication Updates
+        </ion-text>
+      </ion-col>
+      <ion-col
+        class="ion-text-right ion-no-padding"
+        size="3"
+        (click)="gotoMyrecords()"
+        *ngIf="isMatchProcess "
+      >
+        <ion-label class="home-title-txt viewAll text-sm"> View All </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-grid *ngIf="!isMatchProcess">
+      <ion-row nowrap class="forecast_container">
+        <ion-col class="ion-no-padding ion-no-margin">
+          <ion-card class="card-pos">
+            <ion-card-content>
+              We are processing your request. You will receive a notification
+              once your medical records are available to you.
+            </ion-card-content>
+            <!-- <ion-card-content>
+        <ion-spinner *ngIf="!isMatchProcess" name="dots" class="loading"></ion-spinner>
+      </ion-card-content> -->
+          </ion-card>
+        </ion-col>
+      </ion-row></ion-grid
+    >
+    <ion-grid
+      *ngIf="isMatchProcess && user.datavantMatchStatus === 'matchFound'"
+    >
+      <ion-spinner *ngIf="!dataLoaded" class="dots" name="dots"></ion-spinner>
+      <ion-row nowrap class="forecast_container" *ngIf="medication.length>0">
+        <ion-col
+          class="ion-no-padding ion-no-margin"
+          *ngFor="let i of medication"
+        >
+          <medication-capsule [props]="i"></medication-capsule>
+        </ion-col>
+      </ion-row>
+      <ion-row
+        nowrap
+        class="forecast_container"
+        *ngIf="medication.length<=0 && dataLoaded"
+      >
+        <ion-col class="ion-no-padding ion-no-margin">
+          <ion-card class="card-pos">
+            <ion-card-content>
+              There are no medical records associated with your demographics in
+              Integrated Care Collaboration’s (a Health Information Exchange)
+              database.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid
+      *ngIf="isMatchProcess && user.datavantMatchStatus === 'matchNotFound'"
+    >
+      <ion-row>
+        <ion-col>
+          <ion-card class="card-pos">
+            <ion-card-content>
+              There are no medical records associated with your demographics in
+              Integrated Care Collaboration’s (a Health Information Exchange)
+              database.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row class="row-margin-padding">
+      <ion-col class="ion-no-padding">
+        <ion-text class="home-title-txt ion-text-capitalize text-lg">
+          My Apps
+        </ion-text>
+      </ion-col>
+      <ion-col class="ion-text-right ion-no-padding" (click)="gotoAppPlugins()">
+        <ion-label class="home-title-txt viewAll text-sm"> View All </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-grid>
+      <ion-row class="myapp_container">
+        <ion-col
+          class="ion-no-padding ion-no-margin"
+          *ngFor="let app of allApps"
+          size="4"
+        >
+          <!-- (click)="openAppDetails(app._id)" -->
+          <home-myplugin-card
+            [props]="app"
+            (click)="app.isConsented ?openApp($event, app):openAppDetails(app._id)"
+          ></home-myplugin-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+</ion-content>

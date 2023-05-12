@@ -1,0 +1,44 @@
+<div *ngIf="allApps.length; else elseBlock">
+  <ion-list>
+    <ion-item *ngFor="let app of allApps" lines="full">
+      <ion-checkbox
+        slot="start"
+        class="ion-checkbox-size"
+        [name]="app.appName"
+        [value]="app._id"
+        *ngIf="labelAppList == 'Cancel'"
+        [(ngModel)]="app.selected"
+        (ngModelChange)="checkIfAllSelected()"
+      >
+      </ion-checkbox>
+      <ion-thumbnail
+        slot="start"
+        class="app-list-label"
+        (click)="openAppDetails($event, app._id)"
+      >
+        <ion-img src="{{ apiAssetsBaseUrl }}/{{ app.appLogo }}"></ion-img>
+      </ion-thumbnail>
+      <ion-label
+        class="app-list-label"
+        (click)="openAppDetails($event, app._id)"
+      >
+        <ion-text class="text-md"
+          ><b>{{ app.appName }}</b></ion-text
+        >
+        <ion-text color="medium" class="ion-text-wrap">
+          <p class="text-sm">{{ app.shortDescription }}</p>
+        </ion-text>
+      </ion-label>
+      <ion-button
+        *ngIf="labelAppList != 'Cancel'"
+        class="app-list-button text-md"
+        color="primary"
+        (click)="app.isConsented ? openApp($event, app) : presentModal(app)"
+        >{{ app.isConsented ? 'OPEN' : 'GET' }}
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</div>
+<ng-template #elseBlock>
+  <ion-label class="text-lg">Apps not available</ion-label>
+</ng-template>

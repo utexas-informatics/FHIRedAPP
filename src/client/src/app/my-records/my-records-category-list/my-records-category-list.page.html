@@ -1,0 +1,52 @@
+<home-header
+  [headerProps]="headerProps"
+  (onSearchTextChanged)="onSearchTextChanged($event)"
+  class="header"
+  *ngIf="userDataLoaded"
+></home-header>
+
+<ion-content class="ion-content">
+  <ion-spinner *ngIf="!dataLoaded" class="dots" name="dots"></ion-spinner>
+  <div *ngIf="header; else elseBlock">
+    <ion-list no-lines *ngFor="let h1 of header;">
+      <ion-list-header>
+        <ion-label class="list-header text-xl">{{h1}}</ion-label>
+        <ion-label class="list-viewall text-sm" (click)="viewMonth(h1)"
+          >{{viewMonthSelected ==h1 ?'View Less':'View Month'}}</ion-label
+        >
+      </ion-list-header>
+      <ion-item
+        *ngFor="let item of filterList(h1);"
+        class="ion-no-margin ion-no-padding"
+        lines="none"
+      >
+        <my-records-category-item
+          [props]="item"
+          [category]="category"
+          (click)="onclick(item)"
+        ></my-records-category-item>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <ng-template #elseBlock>
+    <div *ngIf="dataLoaded && total == 0">
+      <ion-item lines="none" class="ion-padding-top ion-text-center"
+        ><ion-label class="ion-margin-top noElipsis"
+          >There are no medical records associated with your demographics in
+          Integrated Care Collaboration’s (a Health Information Exchange)
+          database. Please make sure you have given the consent to ICC so your
+          medical records can be shared. Contact info@icc-centex.org to check on
+          your consent status. FHIRedApp will be updated as soon as your medical
+          records are made available in ICC.</ion-label
+        ></ion-item
+      >
+    </div>
+  </ng-template>
+</ion-content>

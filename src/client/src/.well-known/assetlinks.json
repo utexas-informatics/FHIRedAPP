@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "edu.utexas.dellmed.fhiredapp",
+                 "sha256_cert_fingerprints": ["7F:A8:FE:0A:46:16:A7:84:4A:F2:90:92:A1:BD:EB:6B:BD:87:B9:84:DE:58:85:47:C5:D8:A9:A6:B5:D3:32:09"] }
+  }]

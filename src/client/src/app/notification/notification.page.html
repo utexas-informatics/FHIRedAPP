@@ -1,0 +1,68 @@
+<home-header class="headers" [headerProps]="headerProps"></home-header>
+<ion-content class="">
+  <div *ngIf="loaded;else loadingBlock">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div *ngIf="notifications.length; else elseBlock">
+      <ion-list>
+        <!-- <ion-item lines="full"
+      ><ion-fab>
+        <ion-fab-button size="small" color="medium"
+          ><ion-icon name="options-outline"></ion-icon
+        ></ion-fab-button>
+        <ion-fab-list side="end">
+          <ion-button
+            color="medium"
+            shape="round"
+            size="small"
+            class="ion-text-wrap ion-text-capitalize"
+            >Aunt Bertha</ion-button
+          >
+          <ion-button
+            color="medium"
+            shape="round"
+            size="small"
+            class="ion-text-wrap ion-text-capitalize"
+            >Study App</ion-button
+          >
+        </ion-fab-list>
+      </ion-fab></ion-item
+    > -->
+        <span *ngIf="recentNotifications?.length">
+          <app-notification-list
+            class="fullWidth"
+            [notificationList]="recentNotifications"
+          ></app-notification-list>
+        </span>
+
+        <span lines="none" *ngIf="earlierNotifications?.length">
+          <app-notification-list
+            class="fullWidth"
+            listHeader="Earlier"
+            [notificationList]="earlierNotifications"
+          ></app-notification-list>
+        </span>
+      </ion-list>
+    </div>
+    <ng-template #elseBlock
+      ><ion-item lines="none" class="ion-padding-top ion-text-center"
+        ><ion-label class="ion-margin-top"
+          >Notifications not available</ion-label
+        ></ion-item
+      ></ng-template
+    >
+    <ion-infinite-scroll (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <ng-template #loadingBlock
+    ><ion-item lines="none" class="ion-padding-top ion-text-center"
+      ><ion-label class="ion-margin-top">Loading....</ion-label></ion-item
+    ></ng-template
+  >
+</ion-content>

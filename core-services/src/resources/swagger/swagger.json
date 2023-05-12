@@ -1,0 +1,282 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is the API contract for DMS support services",
+    "version": "1.0.0",
+    "title": "DMS support services",
+    "termsOfService": ""
+  },
+  "tags": [
+    {
+      "name": "Audit",
+      "description": "Audit history documents"
+    }
+  ],
+  "paths": {
+    "/audits": {
+      "post": {
+        "tags": ["Audit"],
+        "summary": "Create new audit history",
+        "description": "Creates a new audit history document",
+        "operationId": "createAudits",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/audit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/audits"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8082/api"
+    },
+    {
+      "url": "http://3.238.238.165:8082/api"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "audit": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "example": "LEAP"
+          },
+          "action": {
+            "type": "string",
+            "example": "AcceptConsent"
+          },
+          "actionData": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "array of name-value objects.",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "name of field",
+                  "example": "appId"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "value of field",
+                  "example": "5fec6f6e8048d25b1c189a2d"
+                }
+              }
+            }
+          },
+          "platform": {
+            "type": "string",
+            "example": "mobile, web etc.."
+          },
+          "source": {
+            "type": "string",
+            "example": "device-id or ip of requester"
+          },
+          "entity": {
+            "type": "string",
+            "example": "User, App etc.."
+          },
+          "documentId": {
+            "type": "string",
+            "example": "_id of document updated"
+          },
+          "change": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "array of changed fields.",
+              "properties": {
+                "fieldName": {
+                  "type": "string",
+                  "description": "name of field",
+                  "example": "appName"
+                },
+                "oldValue": {
+                  "type": "string",
+                  "description": "old value of field",
+                  "example": "old name"
+                },
+                "newValue": {
+                  "type": "string",
+                  "description": "new value of field",
+                  "example": "new name"
+                }
+              }
+            }
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "user name"
+          }
+        }
+      },
+      "audits": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "123455646456"
+          }
+        }
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "Unauthorised",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Unauthorised"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "error details from IDP"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User not authenticated"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "URL Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Not Found"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Invalid URL"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Invalid URL"
+                }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 500
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Object with error details"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Error while creating document"
+                }
+              }
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Bad Request"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "nested object with validation details"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Validation Failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

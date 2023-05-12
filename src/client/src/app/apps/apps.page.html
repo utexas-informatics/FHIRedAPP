@@ -1,0 +1,47 @@
+<home-header class="headers" [headerProps]="headerProps"></home-header>
+<ion-content
+  class="
+    ion-text-center ion-justify-content-center ion-align-self-center
+    max-app-width
+  "
+>
+  <ion-grid>
+    <ion-row class="ion-justify-content-start">
+      <ion-col>
+        <ion-segment value="allApps">
+          <ion-segment-button value="allApps" (click)="fetchApps(false)">
+            <ion-label class="text-sm">APP STORE</ion-label>
+          </ion-segment-button>
+
+          <ion-segment-button (click)="fetchApps(true)" value="myApps">
+            <ion-label class="text-sm">MY APPS</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+      <!-- <ion-item lines="none">
+          <ion-toggle
+            [(ngModel)]="myApps"
+            (ngModelChange)="fetchApps()"
+            [disabled]="!isMyAppsEnabled"
+            class="ion-margin-end"
+          ></ion-toggle>
+          <ion-label>My Apps</ion-label>
+        </ion-item>
+       -->
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="myApps; else elseBlock">
+          <app-my-apps
+            [user]="user"
+            [isManageEnabled]="isManageEnabled"
+            [myApps]="apps"
+          ></app-my-apps>
+        </div>
+        <ng-template #elseBlock
+          ><app-app-list [user]="user" [allApps]="apps"></app-app-list
+        ></ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

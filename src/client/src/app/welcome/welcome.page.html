@@ -1,0 +1,29 @@
+<ion-content
+  class="
+    ion-text-center ion-justify-content-center ion-align-self-center
+    max-app-width
+  "
+>
+
+
+
+  <ion-grid *ngIf="showScreen" class="welcome-grid" >
+    <ion-row class="slide-row">
+      <ion-col class="ion-no-padding">
+        <app-slider (slideEnd)="onslideEnd($event)"></app-slider>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="button-row">
+      <ion-col>
+        <ion-button
+          class="ion-margin-horizontal ion-text-capitalize button-border"
+          color="primary"
+          expand="block"
+          routerLink="/invite"
+          >Continue</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

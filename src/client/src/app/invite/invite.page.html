@@ -1,0 +1,217 @@
+<ion-content class="ion-justify-content-center ion-align-self-center container">
+  <ion-grid
+    class="
+      ion-text-center ion-justify-content-center ion-align-self-center
+      max-app-width
+    "
+  >
+    <ion-row class="ion-margin-bottom">
+      <ion-col>
+        <ion-img
+          class="
+            ion-align-self-center ion-justify-content-center
+            img-vertically-center
+          "
+          [ngClass]="{'login-img': isIOS, 'zero-padding':!isIOS}"
+          src="./assets/images/welcome1.svg"
+        >
+        </ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-vertical ion-text-center">
+      <ion-col class="ion-justify-content-center">
+        <ion-text>
+          <h2 class="title-styles whitecolor">Welcome</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-label class="invite-label whitecolor" position="stacked"
+        >Enter Invite Code</ion-label
+      >
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-vertical">
+      <!-- first -->
+      <ion-col size="2">
+        <ion-item class="ion-no-padding ion-text-center no-padding">
+          <ion-input
+            [type]="passwordType"
+            [(ngModel)]="otp.first"
+            (keyup)="otpController($event,otp2,'')"
+            required="true"
+            maxLength="1"
+            (ionChange)="autoTrigger()"
+            #otp1
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- second -->
+      <ion-col size="2">
+        <ion-item class="ion-no-padding ion-text-center no-padding">
+          <ion-input
+            [type]="passwordType"
+            [(ngModel)]="otp.second"
+            (keyup)="otpController($event,otp3,otp1)"
+            required="true"
+            maxLength="1"
+            (ionChange)="autoTrigger()"
+            #otp2
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- third -->
+      <ion-col size="2">
+        <ion-item class="ion-no-padding ion-text-center no-padding">
+          <ion-input
+            [type]="passwordType"
+            [(ngModel)]="otp.third"
+            (keyup)="otpController($event,otp4,otp2)"
+            required="true"
+            maxLength="1"
+            (ionChange)="autoTrigger()"
+            #otp3
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- fourth -->
+      <ion-col size="2">
+        <ion-item class="ion-no-padding ion-text-center no-padding">
+          <ion-input
+            [type]="passwordType"
+            [(ngModel)]="otp.forth"
+            (keyup)="otpController($event,otp5,otp3)"
+            required="true"
+            maxLength="1"
+            (ionChange)="autoTrigger()"
+            #otp4
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- fifth -->
+      <ion-col size="2">
+        <ion-item class="ion-no-padding ion-text-center no-padding">
+          <ion-input
+            [type]="passwordType"
+            [(ngModel)]="otp.fifth"
+            (keyup)="otpController($event,otp6,otp4)"
+            required="true"
+            maxLength="1"
+            (ionChange)="autoTrigger()"
+            #otp5
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- sixth -->
+      <ion-col size="2">
+        <ion-item class="ion-no-padding ion-text-center no-padding">
+          <ion-input
+            [type]="passwordType"
+            [(ngModel)]="otp.sixth"
+            (keyup)="otpController($event,'',otp5)"
+            required="true"
+            maxLength="1"
+            (ionChange)="autoTrigger()"
+            #otp6
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="ion-top-20">
+      <ion-col>
+        <ion-text
+          (click)="hideShowPassword()"
+          class="ion-float-right whitecolor invite-label"
+          size="small"
+          color="primary"
+        >
+          <span *ngIf="passwordType == 'string'">Hide code</span>
+          <span *ngIf="passwordType == 'password'">Show code</span>
+        </ion-text>
+      </ion-col>
+    </ion-row> -->
+    <!-- <ion-row>
+      <ion-col class="ion-justify-content-center alignment">
+        <ion-button
+          class="
+            full-width-button
+            ion-text-capitalize ion-no-margin
+            button-border
+          "
+          color="primary"
+          expand="block"
+          [disabled]="allVerifyCode()"
+          (click)="onVerify()"
+        >
+          <ion-text>
+            <h6 class="ion-no-margin whitecolor">Verify</h6>
+          </ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-button
+          fill="clear"
+          routerLink="/loginSignup"
+          class="whitecolor text-uppercase"
+        >
+          Already have an account?</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- <ion-content>
+  <ion-grid
+    class="ion-margin-top ion-text-center ion-justify-content-center ion-align-self-center max-app-width grid-styles"
+  >
+    <ion-row>
+      <ion-col class="ion-justify-content-center ion-margin-top">
+        <ion-title class="ion-text-center ion-align-self-center ion-no-padding">
+          <h6>WELCOME</h6>
+        </ion-title>
+      </ion-col>
+    </ion-row>
+
+    <ion-row
+      class="ion-justify-content-center ion-align-items-center"
+      style="flex-grow: 1"
+    >
+      <ion-col class="ion-justify-content-center">
+        <ion-item lines="none">
+          <ion-label class="invite-label" position="stacked"
+            >Enter Invite Code</ion-label
+          >
+          <ion-input
+            class="invite-input ion-margin-bottom"
+            [(ngModel)]="inviteCode"
+          ></ion-input>
+          <ion-button
+            class="full-width-button ion-text-capitalize ion-no-margin"
+            color="primary"
+            expand="block"
+            [disabled]="!inviteCode"
+            (click)="onVerify()"
+          >
+            <ion-text>
+              <h6 class="ion-no-margin">Verify</h6>
+            </ion-text>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-button fill="clear" routerLink="/loginSignup">
+          Already have an account?</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+ -->

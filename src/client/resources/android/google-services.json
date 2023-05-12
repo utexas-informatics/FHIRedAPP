@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "72650818606",
+    "project_id": "fhiredapp-prod",
+    "storage_bucket": "fhiredapp-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72650818606:android:ee1a179625ea555a344bbf",
+        "android_client_info": {
+          "package_name": "edu.utexas.dellmed.fhiredapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72650818606-2ot2b2r41dr6d3pv0ms17bbi8kodsr4n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.utexas.dellmed.fhiredapp",
+            "certificate_hash": "c52554634ae5051b4995bdffbf7b760245bc147f"
+          }
+        },
+        {
+          "client_id": "72650818606-f6luinb3jagntpsvjbbnkotqkvgo3gjo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.utexas.dellmed.fhiredapp",
+            "certificate_hash": "d3786293d2877efceda0d0dfe15494285152a723"
+          }
+        },
+        {
+          "client_id": "72650818606-loosmd48cb3tndvbs14o69dkmu0los6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIMn9IXZmDtJAlHVNjQiPGROTdmHuZTdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72650818606-loosmd48cb3tndvbs14o69dkmu0los6g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "72650818606-sle18krhlho63m1s0psh01qfcrqc1m0i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "edu.utexas.dellmed.FHIRedApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

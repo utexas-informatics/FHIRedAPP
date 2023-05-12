@@ -1,0 +1,107 @@
+<ion-header [ngClass]="{'header-padding-ios': isIOS, 'zero-padding':!isIOS}">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/tabs/message/list"
+        color="dark"
+        icon="chevron-back-outline"
+        text=""
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="this.queryParams && this.queryParams.title" size="small">
+      <ion-text class="ion-content-wrap ion-bold">
+        {{this.queryParams.title}}
+      </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="pad-5">
+  <ion-infinite-scroll
+    threshold="50px"
+    (ionInfinite)="loadPreviousMessages($event)"
+    position="top"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more previous chats..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="main" *ngIf="!isLoad && messages && messages.length;else loading">
+    <div class="chat-box">
+      <div class="message-area">
+        <div *ngFor="let message of messages" (click)="ScrollToBottom()">
+          <p *ngIf="message.dateTitle" class="ion-text-center title">
+            {{message.dateTitle}}
+          </p>
+          <p
+            class="profile-margin message {{message.status}}"
+            *ngIf="message.isProfile && message.status === 'outgoing'"
+          >
+            <span>
+              <span class="ion-bold pad-8">You</span>
+              <span class="weight-400">{{message.date}} </span>
+              <ion-icon name="user" class="ion-grey"></ion-icon>
+            </span>
+          </p>
+          <p
+            class="profile-margin message {{message.status}}"
+            *ngIf="message.isProfile && message.status === 'incoming'"
+          >
+            <span>
+              <ion-icon name="user" class="ion-grey"></ion-icon>
+              <span class="ion-bold pad-8">{{message.sender.name}}</span>
+              <span class="weight-400">{{message.date}}</span>
+            </span>
+          </p>
+          <div class="message {{message.status}}">
+            <p>
+              <span class="weight-400">{{message.body}}</span>
+              <span *ngIf="message.status === 'outgoing'">
+                <span *ngIf="message.isRead === 'true'">
+                  <ion-icon
+                    class="
+                      ion-float-right ion-bold ion-checked ion-padding-start
+                    "
+                    name="checkmark-done"
+                  ></ion-icon>
+                </span>
+                <span *ngIf="message.isRead === 'false'">
+                  <ion-icon
+                    class="ion-float-right ion-bold ion-padding-start"
+                    name="checkmark-done"
+                  ></ion-icon>
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <ion-spinner class="text-center"> </ion-spinner>
+  </ng-template>
+</ion-content>
+
+<ion-footer class="ion-no-border top-border">
+  <div class="main">
+    <div class="chat-box">
+      <div class="input-area">
+        <form (submit)="sendMessage()" name="messageForm" #messageForm="ngForm">
+          <ion-input
+            type="text"
+            name="message"
+            [(ngModel)]="messageInfo.message"
+            placeholder="Say something nice..."
+          ></ion-input>
+          <ion-text class="ion-padding" (click)="sendMessage()">
+            <ion-icon name="send"></ion-icon>
+          </ion-text>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-footer>

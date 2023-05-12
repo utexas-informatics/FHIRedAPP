@@ -1,0 +1,13 @@
+module.exports = require('./app');
+module.exports = require('./medical-record-type');
+module.exports = require('./message');
+module.exports = require('./notification');
+module.exports = require('./notification-delivery-channel');
+module.exports = require('./notification-type');
+module.exports = require('./notification-template');
+module.exports = require('./role');
+module.exports = require('./user');
+module.exports = require('./invite-code');
+module.exports = require('./email-verification-code');
+module.exports = require('./metadata');
+module.exports = require('./app-setting');

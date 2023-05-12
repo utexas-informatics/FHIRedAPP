@@ -1,0 +1,40 @@
+.x {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 50%;
+  --background: #e1e1e1;
+  --padding-start: 7px;
+}
+
+.ion-top-70 {
+  margin-top: 70px;
+}
+
+.ion-top-20 {
+  margin-top: 20px;
+}
+
+.email-input {
+  border: solid 1px black;
+  border-radius: 5px;
+  --padding-start: 4px;
+  --padding-end: 4px;
+  background: white;
+}
+ion-title.centerAlign {
+  padding: 0;
+}
+
+.header-padding-ios {
+  padding-top: 40px;
+}
+.zero-padding {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  // here other custom CSS from documentation
+}
+.no-padding {
+  --inner-padding-end: 0 !important;
+}

@@ -1,0 +1,63 @@
+
+.button{
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+    margin: 4px;
+  }
+  
+  
+  .button-bar.button-pill .button:first-child {
+    -webkit-border-radius: 10vw 0 0 10vw;
+    border-radius: 10vw 0 0 10vw;
+    justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  }
+  
+  .button-bar.button-pill .button:last-child {
+    -webkit-border-radius: 0 10vw 10vw 0;
+    border-radius: 0 10vw 10vw 0;
+    justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  }
+  .button-content-left{
+    width: 25vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    border-radius: 10vw 0 0 10vw;
+    box-shadow: 0 1px 3px rgba(231, 127, 127, 0.2);
+    background-color:  #EF8F8C!important;
+    
+  }
+  .button-content-right{
+    width: 25vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 10vw 10vw 0;
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
+    background-color: white im !important;
+  
+  }
+  .ion-label-white{
+     text-align:center;
+    color: white!important; //change to whatever colour you want here
+    font-weight: normal;
+    text-transform: capitalize;
+  }
+  
+  .ion-label-black{
+    text-align:center;
+   color: black!important; //change to whatever colour you want here
+   font-weight: normal;
+   text-transform: capitalize;
+  }
+  

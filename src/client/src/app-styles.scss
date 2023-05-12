@@ -1,0 +1,165 @@
+/*
+ * App Global styles
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. 
+ */
+
+@import './theme/variables';
+@import './theme/custom';
+
+ion-title.page-title {
+  font-weight: normal;
+}
+
+.text-ivl {
+  font-size: var(--ion-text-ivl-font) !important;
+}
+.text-xxl {
+  font-size: var(--ion-text-xxl-font) !important;
+}
+.text-xl {
+  font-size: var(--ion-text-xl-font) !important;
+}
+.text-lg {
+  font-size: var(--ion-text-lg-font) !important;
+}
+
+.text-md {
+  font-size: var(--ion-text-md-font) !important;
+}
+
+.text-sm {
+  font-size: var(--ion-text-sm-font) !important;
+}
+.text-xsm {
+  font-size: var(--ion-text-xsm-font) !important;
+}
+.text-xxsm {
+  font-size: var(--ion-text-xxsm-font) !important;
+}
+.text-header-title {
+  font-size: var(--ion-text-header-title-font) !important;
+}
+.ion-content-background {
+  --ion-background-color: var(--ion-color-secondary) !important;
+  --background: var(--ion-color-secondary) !important;
+}
+html,
+body,
+ion-label {
+  font-family: 'Lato';
+}
+.whitecolor {
+  color: var(--ion-white-color) !important;
+}
+.headers {
+  // min-height: 30%;
+  width: 100%;
+}
+.button-border {
+  --border-radius: 25px !important;
+}
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  ion-navbar.toolbar,
+  ion-header .toolbar[fixed],
+  ion-footer .toolbar[fixed],
+  ion-tabs .tabbar {
+    margin: 0;
+    padding-right: calc((100% - #{map-get($grid-max-widths, lg)}) / 2);
+    padding-left: calc((100% - #{map-get($grid-max-widths, lg)}) / 2);
+  }
+
+  // .max-app-width {
+  //   max-width: 425px;
+  // }
+  .no-margin {
+    margin: 0;
+  }
+
+  .no-padding {
+    padding: 0;
+  }
+
+  .no-margin-padding {
+    margin: 0;
+    padding: 0;
+  }
+
+  .text-ellipsis {
+    max-width: 500px !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .login-img {
+    height: 48vh;
+  }
+}
+
+.text-ellipsis {
+  max-width: 180px;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
+
+.small-text {
+  font-size: small;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+// Applies a text wrap on ion options
+.alert-tappable.alert-radio {
+  height: auto;
+  contain: content;
+}
+
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+  white-space: normal;
+}
+
+ion-label.label-styles,
+.title-styles {
+  font-weight: 600;
+}
+
+.login-options-modal-styles {
+  --height: 70%;
+  bottom: 0;
+}
+
+.delete-alert-styles .remove-btn-styles {
+  font-weight: bold;
+}
+
+.ion-content-wrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-height: 16px;
+  max-height: 32px;
+  -webkit-box-orient: vertical;
+}
+
+.ion-bold {
+  font-weight: bold !important;
+}
+
+.ion-text-small {
+  font-size: small !important;
+}
+
+.unread-card {
+  border-left: 6px #267a85 solid;
+}
+
+.read-card {
+  border-left: 6px #ccc solid;
+}

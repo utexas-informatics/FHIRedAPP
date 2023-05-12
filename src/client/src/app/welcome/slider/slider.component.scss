@@ -1,0 +1,16 @@
+/* Without setting height the slides will take up the height of the slide's content */
+ion-slides {
+  height: 100%;
+}
+
+.slide-title {
+  font-weight: 600;
+  font-size  : 18px;
+  margin     : 0;
+  color      : var(--ion-color-primary-contrast);
+}
+
+.slide-description {
+  font-size: 14px;
+  color    : var(--ion-color-primary-contrast);
+}

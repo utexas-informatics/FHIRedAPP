@@ -1,0 +1,166 @@
+.pad-5 {
+  --padding-start: 7px;
+  --padding-end: 7px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .chat-box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    // background: #f9fbfc;
+    .message-area {
+      max-height: 80%;
+      height: 80%;
+      .message {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 18px;
+
+        color: #000000;
+        p {
+          color: #000000;
+          font-size: 14px;
+          max-width: 80%;
+          min-width: 55%;
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          padding: 16px;
+          margin: 2px 0 3px 31px;
+          background: #fff;
+        }
+      }
+      .message.incoming {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        p {
+          border-radius: 0 11px 11px 11px;
+          background: #f6f6f6;
+        }
+      }
+      .message.outgoing {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        p {
+          border-radius: 11px 0 11px 11px;
+          color: white;
+          background: #7bbbbb;
+        }
+      }
+    }
+    .emo-area {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      padding: 3px 10px;
+    }
+  }
+}
+
+.input-area {
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: white;
+  form {
+    display: flex;
+    height: 100%;
+
+    ion-input {
+      width: 82%;
+      border: none;
+      padding: 5px 10px;
+      color: black;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: 'Titillium Web', sans-serif;
+      background: inherit;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      width: 18%;
+      border: none;
+      color: black;
+      opacity: 0.9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background: inherit;
+      ion-icon {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+.text-center {
+  top: 50%;
+  left: 45%;
+  position: fixed;
+}
+
+.ion-checked {
+  color: #00ffff !important;
+}
+
+.top-1 {
+  position: relative;
+  top: 1px;
+}
+.pad-8 {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.ion-grey {
+  background-color: #efefef;
+  padding: 3px;
+  border-radius: 13px;
+  top: 4px;
+  position: relative;
+  font-weight: bold;
+}
+.profile-margin {
+  margin: 2px;
+  font-size: 15px;
+}
+.weight-400 {
+  font-weight: 400;
+}
+.weight-500 {
+  font-weight: 500;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height, or 155% */
+  color: #828282;
+}
+
+.header-padding-ios {
+  padding-top: 40px;
+}
+.zero-padding {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  // here other custom CSS from documentation
+}
+
+.top-border {
+  border-top: 1px solid black;
+}

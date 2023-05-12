@@ -1,0 +1,54 @@
+<home-header
+  *ngIf="isHeader"
+  [headerProps]="headerProps"
+  class="headers"
+  (onSearchTextChanged)="onSearchTextChanged($event)"
+></home-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull New Threads"
+      refreshingSpinner="crescent"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="horizontal-scroll" *ngIf="appList && appList.length">
+    <ion-chip
+      outline="true"
+      (click)="filterByApp(app, $event)"
+      *ngFor="let app of appList"
+      [hidden]="!app.isConsented"
+    >
+      <ion-label>{{app.appName}}</ion-label>
+      <ion-icon name="close-circle" *ngIf="app.isActive"></ion-icon>
+    </ion-chip>
+  </div>
+  <ion-list>
+    <span *ngIf="listPayload && listPayload.length">
+      <app-ion-card-list
+        [item]="item1"
+        *ngFor="let item1 of listPayload"
+        (selectCard)="redirectChat($event)"
+      ></app-ion-card-list>
+    </span>
+    <ion-card *ngIf="!isLoad && listPayload && !listPayload.length">
+      <ion-card-header>
+        <ion-card-subtitle>You don't have any messages.</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-item *ngIf="isLoad">
+      <ion-spinner class="text-center"></ion-spinner>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more threads..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

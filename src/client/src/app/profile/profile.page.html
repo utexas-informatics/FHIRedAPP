@@ -1,0 +1,291 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center page-title">User Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <ion-grid
+    class="
+      ion-margin-top ion-justify-content-center ion-align-self-center
+      max-app-width
+    "
+  >
+    <ion-row>
+      <ion-col>
+        <label
+          >The information you enter below must match with the information in
+          your medical records. This will allow us to do the accurate matching
+          and will help us retrieve your medical records.</label
+        >
+      </ion-col></ion-row
+    >
+    <ion-row>
+      <ion-col>
+        <form
+          *ngIf="user; else elseBlock"
+          [formGroup]="profileForm"
+          (ngSubmit)="submitForm()"
+          novalidate
+        >
+          <ion-card>
+            <ion-card-content>
+              <ion-card-header class="ion-no-margin ion-no-padding">
+                <ion-card-subtitle>IDENTITY</ion-card-subtitle>
+              </ion-card-header>
+
+              <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                <ion-label position="floating"
+                  ><h5>
+                    First Name<span class="mandatory">*</span>
+                  </h5></ion-label
+                >
+                <ion-input
+                  formControlName="firstName"
+                  type="text"
+                  class="text-md capitalize"
+                ></ion-input>
+              </ion-item>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="isSubmitted && errorControl.firstName.errors?.required"
+              >
+                <h5>First Name is required</h5>
+              </ion-text>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="isSubmitted && errorControl.firstName.errors?.pattern"
+              >
+                <h5>Invalid First Name</h5>
+              </ion-text>
+
+              <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                <ion-label position="floating"
+                  ><h5>Last Name<span class="mandatory">*</span></h5></ion-label
+                >
+                <ion-input
+                  formControlName="lastName"
+                  type="text"
+                  class="text-md capitalize"
+                ></ion-input>
+              </ion-item>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="isSubmitted && errorControl.lastName.errors?.required"
+              >
+                <h5>Last Name is required</h5>
+              </ion-text>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="isSubmitted && errorControl.lastName.errors?.pattern"
+              >
+                <h5>Invalid Last Name</h5>
+              </ion-text>
+
+              <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                <ion-label>
+                  <h5><h5>Email Address</h5></h5>
+                  <ion-note>{{user?.email}}</ion-note>
+                </ion-label>
+              </ion-item>
+
+              <ion-item
+                lines="full"
+                class="ion-no-margin ion-no-padding ion-text-wrap"
+              >
+                <ion-label position="floating"
+                  ><h5>Gender<span class="mandatory">*</span></h5>
+                </ion-label>
+                <ion-select
+                  formControlName="gender"
+                  class="ion-text-wrap"
+                  interface="action-sheet"
+                >
+                  <ion-select-option value="Male">Male</ion-select-option>
+                  <ion-select-option value="Female">Female</ion-select-option>
+                  <ion-select-option value="Genderqueer/Non-Binary"
+                    >Genderqueer/Non-Binary</ion-select-option
+                  >
+                  <ion-select-option value="Prefer not to disclose"
+                    >Prefer not to disclose</ion-select-option
+                  >
+                  <ion-select-option value="Other">Other</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div *ngIf="profileForm.get('gender').value === 'Other'">
+                <ion-item lines="inset" class="ion-no-margin ion-no-padding">
+                  <ion-label position="floating"
+                    ><h5>Other Gender</h5></ion-label
+                  >
+                  <ion-input
+                    formControlName="genderOther"
+                    type="text"
+                    class="text-md capitalize"
+                  ></ion-input>
+                </ion-item>
+                <ion-text
+                  class="error"
+                  color="danger"
+                  *ngIf="isSubmitted && profileForm.errors?.invalidGenderOther"
+                >
+                  <h5>Other gender is required</h5>
+                </ion-text>
+              </div>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="isSubmitted && errorControl.gender.errors?.required"
+              >
+                <h5>Gender is required</h5>
+              </ion-text>
+
+              <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                <ion-label position="floating"
+                  ><h5>Birthday<span class="mandatory">*</span></h5>
+                </ion-label>
+                <ion-datetime
+                  (ionChange)="getDate($event)"
+                  formControlName="birthday"
+                  [value]="defaultDate"
+                >
+                </ion-datetime>
+              </ion-item>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="isSubmitted && errorControl.birthday.errors?.required"
+              >
+                <h5>Birthday is required</h5>
+              </ion-text>
+              <ion-text
+                class="error"
+                color="danger"
+                *ngIf="(profileForm.get('birthday').dirty ||
+                profileForm.get('birthday').touched) && errorControl.birthday.errors?.invalidAge"
+              >
+                <h5>Age should be above 18 years</h5>
+              </ion-text>
+            </ion-card-content>
+          </ion-card>
+          <ion-card>
+            <ion-card-content>
+              <ion-card-header class="ion-no-margin ion-no-padding">
+                <ion-card-subtitle>CONTACT INFO</ion-card-subtitle>
+              </ion-card-header>
+              <div>
+                <div>
+                  <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                    <ion-label position="floating"
+                      ><h5>
+                        Primary Phone Number<span class="mandatory">*</span>
+                      </h5>
+                    </ion-label>
+                    <ion-input
+                      maxlength="10"
+                      formControlName="phoneNumberPrimary"
+                      class="text-md"
+                      type="number"
+                      placeholder="Enter 10 digit phone number with no special characters"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text
+                    class="error"
+                    color="danger"
+                    *ngIf="isSubmitted && errorControl.phoneNumberPrimary.errors?.required"
+                  >
+                    <h5>Primary Phone Number is required</h5>
+                  </ion-text>
+                  <ion-text
+                    class="error"
+                    color="danger"
+                    *ngIf="isSubmitted && errorControl.phoneNumberPrimary.errors?.pattern"
+                  >
+                    <h5>Invalid Phone number</h5>
+                  </ion-text>
+                </div>
+                <div>
+                  <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                    <ion-label position="floating"
+                      ><h5>Secondary Phone Number</h5>
+                    </ion-label>
+                    <ion-input
+                      maxlength="10"
+                      formControlName="phoneNumberSecondary"
+                      class="text-md"
+                      placeholder="Enter 10 digit phone number with no special characters"
+                      type="number"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text
+                    class="error"
+                    color="danger"
+                    *ngIf="isSubmitted && errorControl.phoneNumberSecondary.errors?.pattern"
+                  >
+                    <h5>Invalid Phone number</h5>
+                  </ion-text>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <ion-item lines="full" class="ion-no-margin ion-no-padding">
+                    <ion-label position="floating"
+                      ><h5>Zip<span class="mandatory">*</span></h5>
+                    </ion-label>
+                    <ion-input
+                      maxlength="5"
+                      formControlName="zip"
+                      class="text-md"
+                      type="number"
+                      placeholder="Enter 5 digit zip code with no special characters"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text
+                    class="error"
+                    color="danger"
+                    *ngIf="isSubmitted && errorControl.zip.errors?.required"
+                  >
+                    <h5>Zip code is required</h5>
+                  </ion-text>
+                  <ion-text
+                    class="error"
+                    color="danger"
+                    *ngIf="isSubmitted && errorControl.zip.errors?.pattern"
+                  >
+                    <h5>Invalid Zip code</h5>
+                  </ion-text>
+                </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-item
+                lines="full"
+                class="ion-no-margin ion-no-padding ion-text-center"
+              >
+                <ion-label>
+                  <h5>All Information above is correct</h5>
+                </ion-label>
+              </ion-item>
+              <ion-button
+                type="submit"
+                color="primary"
+                expand="block"
+                class="ion-margin-vertical"
+                >Submit</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </form>
+        <ng-template #elseBlock>
+          <ion-note>Fetching profile details..</ion-note>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

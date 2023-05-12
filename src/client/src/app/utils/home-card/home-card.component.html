@@ -1,0 +1,11 @@
+<ion-card
+  class="ion-text-center ion-no-padding card"
+  style="border-radius: 10px"
+  ng-model="props"
+>
+  <!-- <img src="{{ props.image_url }}" class="image" /> -->
+  <ion-icon [name]="props.image_url" class="image"></ion-icon>
+  <ion-card-subtitle class="subtitle text-sm ellipsis">{{
+    props.type
+  }}</ion-card-subtitle>
+</ion-card>

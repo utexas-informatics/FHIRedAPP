@@ -1,0 +1,49 @@
+<ion-item-sliding disabled="{{ !item.isSlide }}">
+  <ion-item class="ion-no-padding" (click)="selectedCard(item)">
+    <ion-card class="ion-border-color ion-card {{ item.borderClass }}">
+      <ion-item class="ion-no-border">
+        <ion-label class="text-lg ion-bold" *ngIf="item.title">{{
+          item.title
+        }}</ion-label>
+        <ion-icon
+          *ngIf="item.appIcon"
+          name="{{ item.appIcon }}"
+          class="ion-no-margin"
+          [ngClass]="{ 'app-icon': item.appIcon == 'study-app-sm' }"
+          slot="end"
+        ></ion-icon>
+        <ion-text
+          size="small"
+          *ngIf="item.appName"
+          slot="end"
+          class="ion-no-margin text-sm"
+          ><b>{{ item.appName }}</b></ion-text
+        >
+      </ion-item>
+
+      <ion-card-content
+        class="pad-top-0 ion-content-wrap text-sm"
+        *ngIf="item.content"
+        >{{ item.content }}
+      </ion-card-content>
+
+      <ion-item class="ion-no-border">
+        <ion-label class="text-sm" [ngClass]="{ date: !item.unreadCount }">
+          {{ item.unreadCount ? item.unreadCount : showDayDiff(item.date) }}
+        </ion-label>
+        <ion-label class="text-sm" *ngIf="item.date">{{
+          item.unreadCount ? showDayDiff(item.date) : ''
+        }}</ion-label>
+        <ion-icon name="chevron-forward-outline" class="ion-bold"></ion-icon>
+      </ion-item>
+    </ion-card>
+  </ion-item>
+  <ion-item-options side="end" *ngIf="item.slider && item.slider.length">
+    <ion-item-option
+      *ngFor="let slide of item.slider"
+      class="ion-text-capitalize"
+    >
+      {{ slide.name }}</ion-item-option
+    >
+  </ion-item-options>
+</ion-item-sliding>

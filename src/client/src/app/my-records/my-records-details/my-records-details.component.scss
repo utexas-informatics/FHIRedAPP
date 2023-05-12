@@ -1,0 +1,100 @@
+.top-title {
+  color: white;
+  --color: white !important;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  background-color: white;
+}
+.title {
+  font-weight: bold;
+}
+.dosage {
+  font-size: 0.8rem;
+}
+.subtitle {
+  font-weight: bold;
+  margin-top: 10px;
+}
+.prescriber {
+  margin-top: 5px;
+}
+.date-of-issue {
+  margin-top: 5px;
+}
+
+.month-text {
+  width: 15vw;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  background-color: #ef8f8c;
+  color: white;
+  font-weight: bold;
+}
+.date-text {
+  width: 15vw;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color: black;
+}
+
+.vertical-item {
+  width: 73%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.date-card {
+  border-radius: 8px;
+  border: 1px solid #ef8f8c;
+  box-shadow: none !important;
+  margin-left: 34px;
+}
+
+.card-details-container {
+  display: flex;
+  flex-direction: row;
+}
+.content {
+  width: 90vw;
+  margin-top: 37px;
+}
+.top-margin {
+  margin-top: 26px;
+  margin-bottom: 35px;
+}
+.top-20 {
+  margin-top: 20px;
+}
+
+.content-segment {
+  margin-top: 20px;
+}
+.date-margin {
+  margin-top: 27px;
+}
+
+.header-padding-ios {
+  padding-top: 40px;
+}
+.zero-padding {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  // here other custom CSS from documentation
+}

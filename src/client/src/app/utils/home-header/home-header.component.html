@@ -1,0 +1,95 @@
+<ion-card-header
+  class="header zero-padding"
+  [ngClass]="{ 'header-padding-ios': isIOS, 'zero-padding': !isIOS }"
+  color="primary"
+>
+  <ion-icon
+    *ngIf="headerProps && headerProps.showBackButton"
+    name="arrow-back-outline"
+    class="backbutton"
+    (click)="goBack()"
+  ></ion-icon>
+  <ion-icon
+    *ngIf="!headerProps || !headerProps.showBackButton"
+    class="backbutton"
+  ></ion-icon>
+  <ion-icon
+    name="ellipsis-vertical-outline"
+    class="menu-icon"
+    (click)="presentPopover($event)"
+  ></ion-icon>
+  <ion-item class="ion-no-margin ion-no-padding tr-bg full" lines="none">
+    <ion-text
+      class="zero-padding ion-float-left header-text"
+      start
+      *ngIf="headerProps"
+    >
+      <h4 class="title-styles header-text text-header-title ellipsis-title">
+        <!-- ng-model="headerProps" -->
+        {{ headerProps.title }}
+      </h4>
+    </ion-text>
+    <div class="header-avatar-image">
+      <!-- <icon
+        class="title-image"
+        [name]="header - avater.svg"
+        class="zero-padding ion-float-right"
+      ></icon> -->
+      <ion-icon
+        [name]="'header-avater'"
+        class="title-image zero-padding ion-float-right"
+      ></ion-icon>
+    </div>
+  </ion-item>
+  <div
+    class="row margin-bottom"
+    *ngIf="
+      headerProps && headerProps.showSearchBar && !headerProps.medicalSearch
+    "
+  >
+    <ion-searchbar
+      horizontal="end"
+      animated
+      class="header-searchbar text-md"
+      placeholder="{{ headerProps.placeholder || 'Search text' }}"
+      (ionChange)="ionChange($event.target.value)"
+      debounce="2000"
+      [value]="headerProps.serchText"
+    ></ion-searchbar>
+  </div>
+  <div
+    class="row margin-bottom"
+    *ngIf="
+      headerProps && headerProps.showSearchBar && headerProps.medicalSearch
+    "
+  >
+    <ion-searchbar
+      horizontal="end"
+      animated
+      class="header-searchbar text-md"
+      [(ngModel)]="searchTerm"
+      placeholder="{{ headerProps.placeholder || 'Search text' }}"
+      (ionChange)="filterItems($event)"
+      debounce="500"
+      [(ngModel)]="show"
+    ></ion-searchbar>
+    <!-- [value]="headerProps.searchText" -->
+    <ion-grid ion-fixed no-padding>
+      <ion-list
+        style="position: absolute; z-index: 1; width: 90%"
+        *ngIf="values.length > 0"
+      >
+        <ion-item
+          *ngFor="let value of values; let i = index"
+          (click)="ionChange(value)"
+        >
+          {{ value }}
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+  </div>
+  <div
+    class="blankHeight margin-bottom"
+    *ngIf="!headerProps.showSearchBar"
+  ></div>
+</ion-card-header>

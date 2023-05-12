@@ -1,0 +1,69 @@
+.card {
+  width: 25vw;
+  min-width: 25vw;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  border-radius: 15px;
+  margin: 5px;
+  --padding-start: 0px !important;
+  --inner-padding-end: 0px !important;
+  padding-inline-end: 0 !important;
+  -webkit-padding-end: 0 !important;
+  padding-inline-start: 0 !important;
+  -webkit-padding-start: 0 !important;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-weight: bold;
+  padding-left: 9px;
+  font-size: 0.45rem;
+  color: black;
+  text-align: left;
+}
+.title {
+  margin-top: 7px;
+  padding-left: 9px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 0.6rem;
+  color: black;
+  text-transform: capitalize;
+}
+
+.image {
+  width: 13vw;
+  margin: 7px;
+  align-self: left;
+}
+
+.consented {
+  font-size: 12px;
+  color: white;
+  font-weight: normal;
+  font-family: roboto;
+  height: 16px;
+}
+.unconsented {
+  font-size: 12px;
+  color: white;
+  font-weight: normal;
+  font-family: roboto;
+  height: 16px;
+  background: white;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-height: 16px;
+  max-height: 32px;
+  -webkit-box-orient: vertical;
+}

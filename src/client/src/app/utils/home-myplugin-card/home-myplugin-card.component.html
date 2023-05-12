@@ -1,0 +1,16 @@
+<ion-card class="card ion-text-center ion-no-margin" ng-model="props">
+  <ion-badge *ngIf="props.isConsented" color="secondary" class="consented"
+    >INSTALLED</ion-badge
+  >
+  <ion-badge *ngIf="!props.isConsented" class="unconsented">'</ion-badge>
+  <ion-card-subtitle class="title text-sm ellipsis">{{
+    props.appName
+  }}</ion-card-subtitle>
+  <ion-card-subtitle class="subtitle text-xxsm">{{
+    props.subTitle
+  }}</ion-card-subtitle>
+  <ion-img
+    src="{{ apiAssetsBaseUrl }}/{{ props.appLogo }}"
+    class="image"
+  ></ion-img>
+</ion-card>

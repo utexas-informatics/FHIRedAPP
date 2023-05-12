@@ -1,0 +1,45 @@
+<ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()">
+  <ion-tab-bar slot="bottom" class="ion-padding-bottom">
+    <ion-tab-button tab="home">
+      <ion-icon
+        [name]="(selectedTab === 'home')?'home':'home-outline'"
+      ></ion-icon>
+      <ion-label class="text-xsm">Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notification">
+      <ion-icon
+        [name]="(selectedTab === 'notification')?'notifications':'notifications-outline'"
+      ></ion-icon>
+      <ion-label class="text-xsm">Notifications</ion-label>
+      <ion-badge *ngIf="notificationUnreadCount > 0" color="danger"
+        >{{notificationUnreadCount}}</ion-badge
+      >
+    </ion-tab-button>
+
+    <ion-tab-button tab="myRecords">
+      <ion-icon
+        [name]="(selectedTab === 'myRecords')?'records':'records-outline'"
+      ></ion-icon
+      ><ion-label class="text-xsm">My Records</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="message">
+      <ion-icon
+        [name]="(selectedTab === 'message')?'chatbox-ellipses':'chatbox-ellipses-outline'"
+      ></ion-icon>
+      <ion-label class="text-xsm">Messages</ion-label>
+      <ion-badge *ngIf="messageCount" color="danger"
+        >{{messageCount}}</ion-badge
+      >
+    </ion-tab-button>
+
+    <ion-tab-button tab="apps">
+      <ion-icon
+        [name]="(selectedTab === 'apps')?'layers':'layers-outline'"
+        name="layers-outline"
+      ></ion-icon>
+      <ion-label class="text-xsm">My Apps</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

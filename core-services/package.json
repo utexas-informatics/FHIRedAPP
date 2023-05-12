@@ -1,0 +1,63 @@
+{
+  "name": "support-services",
+  "version": "1.0.0",
+  "description": "DMS suit support services - Custom API Implementation",
+  "scripts": {
+    "start": "node ./bin/www",
+    "start:dev": "cross-env NODE_ENV=development npm start",
+    "start:test": "cross-env NODE_ENV=test npm start",
+    "start:prod": "cross-env NODE_ENV=production npm start",
+    "debug": "nodemon ./bin/www",
+    "debug:dev": "cross-env NODE_ENV=development npm run debug",
+    "pretest": "cross-env-shell NODE_ENV=test",
+    "test": "jest --runInBand ./test",
+    "run": "nodemon app.js",
+    "lint": "eslint \"./**/*.js\" --quiet",
+    "lint:fix": "eslint --fix \"./**/*.js\"",
+    "pretty": "prettier --write \"./**/*.{ts,html,scss,css,js,jsx,json}\""
+  },
+  "author": "",
+  "license": "DMS",
+  "dependencies": {
+    "cls-hooked": "^4.2.2",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validation": "^3.0.6",
+    "handlebars": "^4.7.6",
+    "mongoose": "^5.11.15",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.5.0",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
+    "serve-static": "^1.14.1",
+    "swagger-ui-express": "^4.1.6",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "jest": "^26.6.3",
+    "mongodb-memory-server": "^6.9.2",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "supertest": "^6.1.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "4.4.1"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="button ion-no-padding">
+  <div class="button-content-left ion-no-margin ion-no-padding">
+    <h6 class="ion-label-white text-md">{{ props.name }}</h6>
+  </div>
+
+  <div class="button-content-right ion-no-margin ion-no-padding">
+    <h6 class="ion-label-black text-sm">
+      {{ props.dosage }} <br />
+      <b>
+        <span>{{
+          props.category == 'MedicationDispense'
+            ? 'date handover:'
+            : 'date added:'
+        }}</span>
+      </b>
+      {{ props.dateAdded | date: 'shortDate' }}
+    </h6>
+  </div>
+</div>

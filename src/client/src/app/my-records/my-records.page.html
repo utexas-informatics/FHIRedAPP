@@ -1,0 +1,58 @@
+<home-header
+  [headerProps]="headerProps"
+  (onSearchTextChanged)="onSearchTextChanged($event)"
+  class="headers"
+></home-header>
+<ion-grid *ngIf="!isMatchProcess">
+  <ion-row>
+    <ion-col>
+      <ion-card class="card-pos">
+        <ion-card-content>
+          We are processing your request. You will receive a notification once
+          your medical records are available to you.
+        </ion-card-content>
+
+        <!-- <ion-card-content>
+          <ion-spinner name="dots" class="loading"></ion-spinner>
+        </ion-card-content> -->
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid
+  class="scroll-grid"
+  *ngIf="isMatchProcess && user.datavantMatchStatus === 'matchFound'"
+>
+  <ion-spinner *ngIf="!dataLoaded" class="dots" name="dots"></ion-spinner>
+  <ion-row *ngIf="dataLoaded">
+    <ion-col
+      size-lg="2"
+      size-md="3"
+      size-sm="4"
+      size="6"
+      *ngFor="let cat of clinicalCategories;"
+    >
+      <home-card [props]="cat" (click)="gotoRecordsDetail(cat)"></home-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid
+  *ngIf="isMatchProcess && user.datavantMatchStatus === 'matchNotFound'"
+>
+  <ion-row>
+    <ion-col>
+      <ion-card class="card-pos">
+        <ion-card-content>
+          There are no medical records associated with your demographics in
+          Integrated Care Collaboration’s (a Health Information Exchange)
+          database. Please make sure you have given the consent to ICC so your
+          medical records can be shared. Contact info@icc-centex.org to check on
+          your consent status. FHIRedApp will be updated as soon as your medical
+          records are made available in ICC.
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
